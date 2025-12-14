@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me - Anis Najiha</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+<header class="header">
+    <h1 class="header-title">⋆˙⟡ ANIS'S ABOUT ⋆˙⟡</h1>
+    <div id="live-clock" class="live-clock"></div>
+</header>
+
+<main class="main-content">
+
+    <section class="info-card about-me-card">
+        <h3 class="card-title">1. About Me</h3>
+        
+        <div class="card-content portrait-layout">
+            <div class="bio-text">
+                <h4>Hello, I'm Anis!</h4>
+                <p>I'm a determined student currently pursuing my passion for Information Science. My goals and passions include:</p>
+                <ul>
+                    <li>Exploring new cafes and relaxing spots.</li>
+                    <li>Spending quality time with friends and family.</li>
+                    <li>Always seeking opportunities to learn and grow.</li>
+                    <li>Developing my skills in data analysis and programming.</li>
+                </ul>
+                <p>My journey through education has taught me the importance of adaptability—from primary school prefect to diving into the world of data, I'm ready for any new challenge!</p>
+            </div>
+            
+            <div class="image-slider">
+                <div class="slider-images">
+                    <img src="anisaboutme.jpg" alt="Anis Picture 1" class="my-pic">
+                    <img src="anisaboutme2.jpg" alt="Anis Picture 2" class="my-pic">
+                </div>
+                <div class="slider-dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-card playlist-card">
+        <h3 class="card-title">2. My Vibe: Favourite Playlist 🎧</h3>
+        <button class="toggle-btn" onclick="toggleDetails(this)">Click to View Details 🔽</button>
+        
+        <div class="card-details" style="display: none;">
+            <div class="card-content landscape-layout">
+                <p>Here are my top 3 songs/artists currently on repeat! Music helps me focus when I study and relax after a long day.</p>
+                <ol class="top-tracks-list">
+                    <li>Favourite Artist: Harry Styles</li>
+                    <li>Best Pump-Up Song: Late Night Talking  </li>
+                    <li>Comfort Listen: Matilda</li>
+                </ol>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/6KImCVD70vtIoJWnq6nGn3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-card food-drink-card">
+        <h3 class="card-title">3. Craving Corner: Food & Drinks 🍜</h3>
+        <button class="toggle-btn" onclick="toggleDetails(this)">Click to View Details 🔽</button>
+
+        <div class="card-details" style="display: none;">
+            <div class="card-content landscape-layout">
+                <div class="favorites-grid side-by-side"> 
+                    <div class="favorite-item">
+                        <h4>Favourite Food 🍚</h4>
+                        <ul class="custom-food-list">
+                            <li>Chicken Rice</li>
+                            <li>Spaghetti Salted Egg</li>
+                            <li>Ramen Samyang</li>
+                        </ul>
+                        <img src="chickenrice.jpg" alt="Chicken Rice" class="item-pic">
+                    </div>
+                    <div class="favorite-item">
+                        <h4>Favourite Drinks 🥤</h4>
+                        <ul>
+                            <li>Iced Lemon Tea</li>
+                            <li>Kopi Ais</li>
+                            <li>Honey Lemon</li>
+                        </ul>
+                        <img src="lemontea.jpg" alt="Iced Lemon Tea" class="item-pic">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-card comfort-show-card">
+        <h3 class="card-title">4. My Comfort Shows 📺</h3>
+        <button class="toggle-btn" onclick="toggleDetails(this)">Click to View Details 🔽</button>
+        
+        <div class="card-details" style="display: none;">
+            <div class="shows-container"> 
+                
+                <div class="show-item">
+                    <div class="card-content portrait-layout">
+                         <img src="10things.jpg" alt="Show Poster" class="show-poster">
+                        <div class="show-details">
+                            <p class="show-title">10 Things I Hate About You</p>
+                            <p>The timeless romcom that always brings laughter and feel-good moments.</p>
+                            <p class="show-genre">Genre: Romantic, Comedy</p>
+                            <a href="https://youtu.be/nebaBmsafv8?si=PiyG0mios7N-k0FJ" target="_blank" class="trailer-link">Trailer</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="show-item">
+                    <div class="card-content portrait-layout">
+                         <img src="howtolose.jpg" alt="How To Lose A Guy in 10 Days Poster" class="show-poster">
+                        <div class="show-details">
+                            <p class="show-title">How To Lose A Guy in 10 Days</p>
+                            <p>A hilarious romantic comedy that is perfect for a rewatch.</p>
+                            <p class="show-genre">Genre: Romantic, Comedy</p>
+                            <a href="https://youtu.be/dJQFM2u8OmE?si=uMEmfecB59SSYsro" target="_blank" class="trailer-link">Trailer</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<br><a href="home.html" class="back-btn">⬅ Back to Home Page</a>
+
+<footer class="footer">
+    <ul class="social-icon">
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.facebook.com/profile.php?id=100094244487958">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.tiktok.com/@ansmadz?_r=1&_t=ZS-91yLbwtTAiy">
+                <ion-icon name="logo-tiktok"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://pin.it/73ceVVpT0">
+                <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.instagram.com/ansmadz?igsh=MWI3MGE5dm5qM2o4Zg==">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+        </li>
+    </ul>
+    <p>© ANIS NAJIHA | MY RESUME</p>
+</footer>
+
+<script>
+    // Live Clock/Date Functionality (UNCHANGED)
+    function updateClock() {
+        const now = new Date();
+        const dateString = now.toLocaleDateString('en-MY', { 
+            weekday: 'short', 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+        const timeString = now.toLocaleTimeString('en-MY', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit',
+            hour12: true
+        });
+        document.getElementById('live-clock').innerHTML = `${dateString} | ${timeString}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call to display immediately
+
+
+    // Toggle Functionality (MODIFIED FOR SMOOTH SCROLL)
+    function toggleDetails(button) {
+        const card = button.closest('.info-card');
+        const details = card.querySelector('.card-details');
+        
+        if (details.style.display === "none" || details.style.display === "") {
+            details.style.display = "block";
+            button.innerHTML = "Hide Details ᐱ";
+            
+            // NEW: Smoothly scroll the card into view when opening it
+            card.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start' // Scrolls to the top of the card
+            });
+
+        } else {
+            details.style.display = "none";
+            button.innerHTML = "Click to View Details 🔽";
+        }
+    }
+
+    // Image Slider Functionality (UNCHANGED)
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.querySelectorAll(".image-slider .my-pic");
+      let dots = document.querySelectorAll(".slider-dots .dot");
+      
+      if (slides.length === 0) return; 
+
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

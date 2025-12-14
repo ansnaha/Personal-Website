@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="family.css"> 
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EAD9C6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            /* Now using Great Vibes for a more beautiful title */
+            font-family: "Great Vibes", cursive;
+            font-size: 70px; /* Kept from your CSS block */
+            color: white; /* Kept from your CSS block */
+            margin-top: 20px;
+        }
+        h2 {
+            font-family: Arial, sans-serif;
+            color: #5E4D3B;
+            margin: 40px auto 20px;
+        }
+
+        /* --- Details Grid Styles --- */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            gap: 30px;
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .family-card {
+            background-color: #FDF6EC;
+            border: 2px solid #6B4F31;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            overflow: hidden; /* Hide overflow of the image corner */
+            position: relative;
+        }
+
+        .family-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .family-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #EAD9C6;
+        }
+
+        .family-card-caption {
+            font-family: "Caveat", cursive;
+            font-size: 28px;
+            font-weight: bold;
+            color: #734D05;
+            margin-bottom: 10px;
+        }
+
+        .family-card button {
+            background-color: #A0522D; /* Sienna */
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .family-card button:hover {
+            background-color: #8B4513; /* SaddleBrown */
+        }
+        
+        /* --- Modal (Pop-up) Styles --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 2000; /* High z-index to be on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            padding-top: 60px;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: #FDF6EC;
+            margin: 5% auto; 
+            padding: 30px;
+            border: 4px solid #734D05;
+            width: 80%; 
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s;
+            text-align: left;
+        }
+
+        .modal-content h3 {
+            font-family: "Great Vibes", cursive;
+            font-size: 50px;
+            color: #5E4D3B;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .modal-body img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #734D05;
+            flex-shrink: 0;
+        }
+        
+        .modal-details p {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            color: #3E2723;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .modal-details strong {
+             font-family: "Caveat", cursive;
+             font-size: 24px;
+             color: #734D05;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #734D05;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive adjustments for details grid */
+        @media (max-width: 1200px) {
+            .details-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .details-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal-content { width: 90%; }
+            .modal-body { flex-direction: column; align-items: center; text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .details-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1 class="header-title"> ⋆˙⟡ Milan Family ⋆˙⟡</h1>
+</header>
+
+<h2>Here’s a glimpse of the ones I call family</h2>
+
+<div class="slider">
+    <div>
+        <img src="fam1.jpg" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+    <div>
+        <img src="fam4.jpg" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+    <div>
+        <img src="fam2.jpg" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+    <div>
+        <img src="fam10.PNG" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+    <div>
+        <img src="fam3.jpg" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+    <div>
+        <img src="fam16.PNG" alt="Family Member ">
+        <p class="slider-caption">family</p>
+    </div>
+    <div>
+        <img src="fam8.PNG" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+    <div>
+        <img src="fam14.PNG" alt="Family Member ">
+        <p class="slider-caption">Family</p>
+    </div>
+</div>
+
+<hr> <h2>Meet The Family</h2>
+
+<div class="details-grid">
+    <div class="family-card" onclick="openModal('ayah-modal')">
+        <img src="ayoh.jpg" alt="Ayah" class="family-card-img">
+        <p class="family-card-caption">AYAH</p>
+        <button>View Details</button>
+    </div>
+    
+    <div class="family-card" onclick="openModal('ibu-modal')">
+        <img src="ibu.PNG" alt="Ibu" class="family-card-img">
+        <p class="family-card-caption">IBU</p>
+        <button>View Details</button>
+    </div>
+
+    <div class="family-card" onclick="openModal('abang-modal')">
+        <img src="abang.PNG" alt="Abang" class="family-card-img">
+        <p class="family-card-caption">ABANG</p>
+        <button>View Details</button>
+    </div>
+
+    <div class="family-card" onclick="openModal('kakngah-modal')">
+        <img src="kakngah.PNG" alt="Kakngah" class="family-card-img">
+        <p class="family-card-caption">KAKNGAH</p>
+        <button>View Details</button>
+    </div>
+
+    <div class="family-card" onclick="openModal('kaklang-modal')">
+        <img src="kaklang.PNG" alt="Kaklang" class="family-card-img">
+        <p class="family-card-caption">KAKLANG</p>
+        <button>View Details</button>
+    </div>
+    
+    <div class="family-card" onclick="openModal('kakchik-modal')">
+        <img src="kakchik.PNG" alt="Kakchik" class="family-card-img">
+        <p class="family-card-caption">KAKCHIK</p>
+        <button>View Details</button>
+    </div>
+
+    <div class="family-card" onclick="openModal('saya-modal')">
+        <img src="me.PNG" alt="Saya" class="family-card-img">
+        <p class="family-card-caption">SAYA</p>
+        <button>View Details</button>
+    </div>
+    
+    <div class="family-card" onclick="openModal('adik-modal')">
+        <img src="adik.PNG" alt="Adik" class="family-card-img">
+        <p class="family-card-caption">ADIK</p>
+        <button>View Details</button>
+    </div>
+</div>
+
+<div id="ayah-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('ayah-modal')">&times;</span>
+    <h3>My Wonderful Ayah</h3>
+    <div class="modal-body">
+        <img src="ayoh.jpg" alt="Ayah's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> MADZLAN BIN DARUS</p>
+            <p><strong>Role:</strong> The Head of the Family</p>
+            <p><strong>Occupation:</strong> Retired Soldier</p>
+            <p><strong>Fun Fact:</strong> Once said didnt want any cat in the house, but he the one playing with the cat </p>
+            <p>He is the strongest supporter and our guiding light. His wisdom is the foundation of our family.</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="ibu-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('ibu-modal')">&times;</span>
+    <h3>My Amazing Ibu</h3>
+    <div class="modal-body">
+        <img src="ibu.PNG" alt="Ibu's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> JAMILAH BINTI MOHD OSMAN</p>
+            <p><strong>Role:</strong> The Heart of the Home</p>
+            <p><strong>Occupation:</strong> Administrative Assistant </p>
+            <p><strong>Fun Fact:</strong> Ibu has very deep dimples</p>
+            <p>She is the most loving person and the reason our home is filled with warmth and good food.</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="abang-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('abang-modal')">&times;</span>
+    <h3>My Elder Brother (Abang)</h3>
+    <div class="modal-body">
+        <img src="abang.PNG" alt="Abang's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong>AFIQ AIMAN BIN MADZLAN</p>
+            <p><strong>Role:</strong> The Protector</p>
+            <p><strong>Occupation:</strong>Trader</p>
+            <p><strong>Fun Fact:</strong> Eat rice with fork not spoon</p>
+            <p>He's the eldest and always the one we look up to. A great source of advice and strength.</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="kakngah-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('kakngah-modal')">&times;</span>
+    <h3>My Second Elder Sister (Kakngah)</h3>
+    <div class="modal-body">
+        <img src="kakngah.PNG" alt="Kakngah's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> AFIQAH NADHIRA BINT MADZLAN</p>
+            <p><strong>Role:</strong> The Second Child</p>
+            <p><strong>Occupation:</strong> Social Media Manager</p>
+            <p><strong>Fun Fact:</strong> Love kids so much</p>
+            <p>The one who brings balance and is always ready with a kind word and a cheerful smile.</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="kaklang-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('kaklang-modal')">&times;</span>
+    <h3>My Third Elder Sister (Kaklang)</h3>
+    <div class="modal-body">
+        <img src="kaklang.PNG" alt="Kaklang's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> AFIQAH NURZAHIRA BINTI MADZLAN</p>
+            <p><strong>Role:</strong> The Free Spirit</p>
+            <p><strong>Occupation:</strong> Admin </p>
+            <p><strong>Fun Fact:</strong> Love to do lame joke </p>
+            <p>Full of energy and creativity. She always encourages me to follow my dreams.</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="kakchik-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('kakchik-modal')">&times;</span>
+    <h3>My Fourth Elder Sister (Kakchik)</h3>
+    <div class="modal-body">
+        <img src="kakchik.PNG" alt="Kakchik's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> ANIS NAJWA BINTI MADZLAN</p>
+            <p><strong>Role:</strong> The Planner</p>
+            <p><strong>Occupation:</strong> Designer </p>
+            <p><strong>Fun Fact:</strong> Known as Chikmok cause she likes to eat</p>
+            <p>She's organized and smart, helping us all keep our lives in check!</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="saya-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('saya-modal')">&times;</span>
+    <h3>That's Me (Anis)</h3>
+    <div class="modal-body">
+        <img src="me.PNG" alt="My Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> ANIS NAJIHA BINTI MADZLAN</p>
+            <p><strong>Role:</strong> The Chatterbox</p>
+            <p><strong>Study/Work:</strong> Study in UITM Segamat</p>
+            <p><strong>Fun Fact:</strong> The most yapper</p>
+            <p>I'm the one who created this page to celebrate my amazing family!</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="adik-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('adik-modal')">&times;</span>
+    <h3>My Younger Sibling (Adik)</h3>
+    <div class="modal-body">
+        <img src="adik.PNG" alt="Adik's Picture">
+        <div class="modal-details">
+            <p><strong>Name:</strong> MUHAMMAD ADAM AMSYAR BIN MADZLAN </p>
+            <p><strong>Role:</strong> The Youngest Treasure</p>
+            <p><strong>Study/Work:</strong> The School Kid</p>
+            <p><strong>Fun Fact:</strong> The Amayan of the family </p>
+            <p>The baby of the family, full of mischief and endless laughter. Our energy booster!</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<br><a href="home.html" class="back-btn">⬅ Back to Home Page</a>
+
+<footer class="footer">
+    <ul class="social-icon">
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.facebook.com/profile.php?id=100094244487958">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.tiktok.com/@ansmadz?_r=1&_t=ZS-91yLbwtTAiy">
+                <ion-icon name="logo-tiktok"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://pin.it/73ceVVpT0">
+                <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.instagram.com/ansmadz?igsh=MWI3MGE5dm5qM2o4Zg==">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+        </li>
+    </ul>
+    <p>&copy; ANIS NAJIHA | MY RESUME</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+            arrows: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        });
+    });
+
+    // JavaScript to handle the modal/pop-up functionality
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    }
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

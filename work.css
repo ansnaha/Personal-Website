@@ -1,0 +1,341 @@
+/* --- 0. BASE & THEME STYLES --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F4E1; 
+    color: #3E2723; 
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background-color: #3E2723; 
+    color: white;
+    padding: 20px 5%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    font-family: 'Caveat', cursive;
+    font-size: 3em;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.live-clock {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    white-space: nowrap;
+    color: #FFECB3;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Info Card General Styling */
+.info-card {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border: 5px solid #3E2723;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+.info-card .card-title {
+    font-family: 'Caveat', cursive;
+    font-size: 2em;
+    color: #3E2723;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+
+/* Back button  */
+.back-btn {
+    display: block; 
+    width: fit-content; 
+    margin: 30px auto; 
+    background: #673832;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.back-btn:hover {
+    background: #5b3b04;
+}
+
+/* Footer */
+.footer {
+    background: #3E2723;
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 40px;
+    border-top: 5px solid #ffcccb;
+}
+
+.social-icon {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.social-icon__item {
+    margin: 0 10px;
+}
+
+.social-icon__link {
+    font-size: 30px;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icon__link:hover {
+    color: #ffcccb;
+    transform: scale(1.2);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+
+/* --- 1. WORK EXPERIENCE TABLE STYLING --- */
+.experience-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.experience-table thead th {
+    background-color: #795548; 
+    color: white;
+    padding: 15px 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.experience-table tbody .job-row {
+    border-bottom: 1px solid #E0E0E0;
+    transition: background-color 0.3s;
+}
+
+.experience-table tbody .job-row:last-child {
+    border-bottom: none;
+}
+
+.experience-table tbody .job-row:hover {
+    background-color: #F5F5F5;
+}
+
+.experience-table td {
+    padding: 15px 10px;
+    vertical-align: top;
+}
+
+/* Specific Column Styles */
+.role-column { width: 30%; }
+.duration-col { 
+    width: 15%; 
+    text-align: center;
+    font-weight: bold;
+    color: #5D4037;
+}
+.details-col { width: 55%; }
+
+/* Role Styling */
+.role-col h4 {
+    margin: 0 0 5px 0;
+    color: #3E2723;
+    font-size: 1.2em;
+}
+.role-col .company {
+    margin: 0;
+    font-style: italic;
+    color: #9E9E9E;
+    font-size: 0.9em;
+}
+
+.icon-col {
+    width: 50px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/* Details List Styling */
+.details-col ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.details-col ul li {
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px;
+    font-size: 0.95em;
+}
+.details-col ul li::before {
+    content: "•";
+    color: #4CAF50; 
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* --- 2. SKILLS PROGRESS BAR STYLING --- */
+.skills-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 45%;
+}
+
+.skill-category h4 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8em;
+    color: #3E2723;
+    border-bottom: 2px solid #D7CCC8;
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.skill-bar-container {
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.progress-bar-bg {
+    background-color: #E0E0E0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 30px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4CAF50; 
+    color: white;
+    text-align: right;
+    padding-right: 10px;
+    line-height: 30px;
+    font-weight: bold;
+    transition: width 1.5s ease-in-out;
+}
+
+/* Custom color for Soft Skills bars */
+.progress-bar-bg.soft-skill .progress-bar.soft-skill {
+    background-color: #FBC02D; 
+    color: #3E2723;
+}
+
+
+/* Media Query Adjustments for Tables/Skills on Small Screens */
+@media (max-width: 768px) {
+    
+    /* ** FIX APPLIED HERE: **
+    Removed 'display: block' from table elements (tr, td, th) 
+    to prevent cells from stacking vertically. 
+    Kept 'overflow-x: auto' to enable horizontal scrolling of the table.
+    */
+    .experience-table {
+        display: block;
+        overflow-x: auto;
+        width: 100%; 
+    }
+    
+    .experience-table thead th {
+        text-align: center;
+    }
+
+    /* Stack Skills  */
+    .skills-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .skill-category {
+        min-width: 100%;
+    }
+}
+
+/* --- 3. RESUME DOWNLOAD CARD STYLING --- */
+
+.download-card {
+    text-align: center;
+    padding: 40px; 
+    background-color: #FFFFFF; 
+}
+
+/* ... rest of the download button styles remain the same ... */
+.resume-download-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    margin: 20px 0 10px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.resume-download-btn:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.file-note {
+    font-size: 0.8em;
+    color: #9E9E9E;
+    margin-top: 5px;
+}

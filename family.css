@@ -1,0 +1,331 @@
+/* --- GLOBAL BODY STYLES  --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EAD9C6;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    font-family: "Great Vibes", cursive; 
+    font-size: 70px;
+    color: white;
+    margin-top: 20px;
+}
+
+h2 {
+    font-family: Arial, sans-serif;
+    color: #5E4D3B;
+    margin: 40px auto 20px;
+}
+
+hr {
+    width: 60%;
+    border: none;
+    height: 1px;
+    background-color: #734D05;
+    margin: 20px auto;
+}
+
+/* --- HEADER STYLES --- */
+header {
+    background-color: #3E2723;
+    color: white;
+    padding: 12px 0;
+    font-size: 6px;
+    font-weight: 300;
+}
+
+.header-title {
+    font-family: "Great Vibes", cursive;
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+
+/* ---- FAMILY PAGE SLIDER ---- */
+.slider {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.slider div {
+    height: 450px;
+    padding: 10px;
+}
+
+.slider img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.slider-caption {
+    font-family: "Caveat", cursive;
+    font-size: 24px;
+    margin-top: 10px;
+    color: #734D05;
+}
+
+/* ---- Slick Navigation ---- */
+.slick-prev:before,
+.slick-next:before {
+    color: #734D05;
+}
+
+.slick-dots li button:before {
+    color: #734D05;
+}
+
+/* --- DETAILS GRID STYLES --- */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.family-card {
+    background-color: #FDF6EC;
+    border: 2px solid #6B4F31;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s, box-shadow 0.1s;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.family-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.family-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #EAD9C6;
+}
+
+.family-card-caption {
+    font-family: "Caveat", cursive;
+    font-size: 28px;
+    font-weight: bold;
+    color: #734D05;
+    margin-bottom: 10px;
+}
+
+.family-card button {
+    background-color: #A0522D; 
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.family-card button:hover {
+    background-color: #8B4513; 
+}
+
+
+/* --- MODAL (POP-UP) STYLES  --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    padding-top: 60px;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: #FDF6EC;
+    margin: 5% auto; 
+    padding: 30px;
+    border: 4px solid #734D05;
+    width: 80%; 
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.5s;
+    text-align: left;
+}
+
+.modal-content h3 {
+    font-family: "Great Vibes", cursive;
+    font-size: 50px;
+    color: #5E4D3B;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.modal-body img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #734D05;
+    flex-shrink: 0;
+}
+
+.modal-details p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #3E2723;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.modal-details strong {
+     font-family: "Caveat", cursive;
+     font-size: 24px;
+     color: #734D05;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #734D05;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* ---- Responsive Adjustments ---- */
+
+/* Responsive adjustments for details grid */
+@media (max-width: 1200px) {
+    .details-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+    .details-grid { grid-template-columns: repeat(2, 1fr); }
+    .modal-content { width: 90%; }
+    .modal-body { flex-direction: column; align-items: center; text-align: center; }
+    .modal-details p { text-align: left; } 
+}
+@media (max-width: 600px) {
+    .details-grid { grid-template-columns: 1fr; }
+    .slider div { height: 350px; }
+    .slider img { height: 350px; }
+}
+
+/* Back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    background: #673832;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.back-btn:hover {
+    background: #5b3b04;
+}
+
+/* ---- FOOTER STYLES ---- */
+.footer {
+    background: #3E2723;
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 50px;
+    border-top: 5px solid #ffcccb;
+}
+
+.social-icon__link {
+    font-size: 30px;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin: 0 0 30px 0;
+}
+
+.social-icon__item {
+    margin: 0 10px;
+}
+
+.social-icon__item:hover .social-icon__link {
+    transform: scale(1.1);
+    color: #ffcccb;
+}
+
+/* ---- Navbar styles---- */
+.gallery-nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #3E2723;
+    z-index: 1000;
+    padding: 25px 0; 
+}
+
+.gallery-nav button {
+    background-color: #3E2723;
+    color: white;
+    border: none;
+    padding: 18px 35px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}

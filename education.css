@@ -1,0 +1,245 @@
+/* ---- GENERAL BODY ---- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, sans-serif;
+    background-color: #EAD9C6;
+    text-align: center;
+}
+
+/* --- HEADER STYLES --- */
+header {
+    background-color: #3E2723;
+    color: white;
+    padding: 30px 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.header-title {
+    font-family: "Caveat", cursive;
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 2px;
+    text-align: center;
+}
+/* Back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    background: #673832;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.back-btn:hover {
+    background: #5b3b04;
+}
+ 
+.logo-text {
+    font-family: "Caveat", cursive;
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffcccb;
+}
+
+/* ---- EDUCATION BOXES (Vertical) ---- */
+.edu-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px;
+}
+
+.edu-card {
+    width: 330px;
+    background: #fff;
+    border: 4px dashed #3E2723;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+/* School logo (CLICKABLE) */
+.school-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.school-logo:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.25));
+}
+
+/* School name */
+.edu-card h2 {
+    color: #734D05;
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+/* School Image */
+.school-img {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* ---- LANDSCAPE BOX FOR EXTRACURRICULAR ACTIVITIES ---- */
+.extracurricular-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px;
+}
+
+.activity-card {
+    display: flex;
+    background: #FFF7EB;
+    border: 4px double #8B5E3C;
+    border-radius: 25px;
+    width: 600px;
+    height: 200px;
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.activity-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 8px 18px rgba(0,0,0,0.2);
+}
+
+.activity-card img {
+    width: 45%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-right: 20px;
+}
+
+.activity-card-content {
+    width: 55%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.activity-card-content h3 {
+    font-family: "Caveat", cursive;
+    font-size: 28px;
+    color: #734D05;
+    margin-bottom: 10px;
+}
+
+.activity-card-content p {
+    font-size: 15px;
+    color: #5a4635;
+}
+
+/* ---- LANDSCAPE BOX FOR QUOTES ---- */
+.quotes-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 40px 20px;
+    margin: 50px 0;
+}
+
+.quote-card {
+    display: flex;
+    align-items: center;
+    background: #FFF3E0;
+    border: 4px dashed #A76F43;
+    border-radius: 25px;
+    width: 700px;
+    padding: 20px 30px;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+}
+
+.quote-card p {
+    margin: 0;
+    font-style: italic;
+    color: #3E2723;
+}
+
+.quote-author {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #734D05;
+}
+
+/* ---- FOOTER ---- */
+.footer {
+    background: #3E2723;
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 40px;
+    border-top: 5px solid #ffcccb;
+}
+
+.social-icon {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.social-icon__item {
+    margin: 0 10px;
+}
+
+.social-icon__link {
+    font-size: 30px;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icon__link:hover {
+    color: #ffcccb;
+    transform: scale(1.2);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.8;
+}

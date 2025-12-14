@@ -1,0 +1,414 @@
+/* Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F4E1; 
+    color: #3E2723; 
+    line-height: 1.6;
+}
+
+/* --- Consistent Header Styling --- */
+.header {
+    background-color: #3E2723; 
+    color: white;
+    padding: 20px 5%; 
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    position: relative; 
+}
+
+.header-title {
+    font-family: 'Caveat', cursive;
+    font-size: 3em;
+    margin: 0;
+    flex-grow: 1; 
+    text-align: center;
+}
+
+/* Live Clock Styling */
+.live-clock {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    white-space: nowrap; 
+    color: #FFECB3; 
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Info Card General Styling (The Bordered Box) */
+.info-card {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border: 5px solid #3E2723; 
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+    position: relative;
+    overflow: hidden;
+}
+
+/* NEW: Card Hover Effect (Lifting) */
+.info-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35); 
+}
+
+/* Border color for all sections are same */
+.about-me-card { border-color: #3E2723; animation: borderPulse 3s infinite alternate; }
+.playlist-card { border-color: #3E2723; }
+.food-drink-card { border-color: #3E2723; }
+.comfort-show-card { border-color: #3E2723; }
+
+
+/* the top title is styled and visible */
+.info-card .card-title {
+    font-family: 'Caveat', cursive;
+    font-size: 2em;
+    color: #3E2723; 
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: inline-block; 
+    animation: titleWiggle 8s infinite ease-in-out;
+}
+
+/* Toggle Button Styling */
+.toggle-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    background-color: #795548; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.15s, transform 0.15s;
+}
+
+.toggle-btn:hover {
+    background-color: #5D4037; 
+}
+
+/* Button Click/Active Feedback */
+.toggle-btn:active {
+    transform: scale(0.98);
+}
+
+
+.card-details {
+    padding-top: 15px;
+    border-top: 1px solid #E0E0E0; 
+}
+
+/* General Layout Containers */
+.card-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.portrait-layout {
+    flex-direction: row;
+    align-items: flex-start; 
+}
+
+.landscape-layout {
+    flex-direction: column;
+    text-align: center;
+}
+
+
+/* --- IMAGE SLIDER STYLING --- */
+.image-slider {
+    width: 250px; 
+    position: relative;
+    margin: 0;
+    overflow: hidden; 
+    flex-shrink: 0;
+    border: 3px solid #795548; 
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+}
+.my-pic {
+    width: 100%; 
+    height: 300px;
+    object-fit: cover;
+    display: none; 
+    border-radius: 0; 
+}
+
+.slider-dots {
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+}
+.active {
+    background-color: #3E2723; 
+}
+
+/*  Image/Poster Hover Effect (Zoom) */
+.item-pic, .show-poster, .image-slider {
+    /* Base transition for zoom effect */
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.item-pic:hover, .show-poster:hover {
+    transform: scale(1.05); /* Gentle zoom */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- 3. Food & Drinks Side-by-Side Layout --- */
+.favorites-grid.side-by-side {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; 
+    width: 100%;
+    margin-top: 20px;
+    gap: 20px;
+}
+.favorite-item {
+    text-align: center;
+    width: 45%; 
+    min-width: 250px;
+}
+
+/* CUSTOM MARKER STYLING (Food List) */
+.custom-food-list {
+    list-style-type: none; 
+    padding: 0;
+    margin-bottom: 15px;
+    text-align: left;
+    margin: 0 auto 15px auto;
+}
+.custom-food-list li {
+    position: relative;
+    padding-left: 25px; 
+    margin-bottom: 5px;
+}
+.custom-food-list li::before {
+    content: "🌶️"; 
+    position: absolute;
+    left: 0;
+    color: #D32F2F; 
+    font-size: 1.1em;
+}
+
+.item-pic {
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #795548;
+}
+
+/* --- 4. Comfort Show Side-by-Side Layout --- */
+.shows-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    gap: 30px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.show-item {
+    flex: 1 1 45%; 
+    min-width: 300px;
+    padding: 15px;
+    border: 1px solid #E0E0E0; 
+    border-radius: 10px;
+}
+
+.show-item .card-content {
+    gap: 15px; 
+}
+
+.show-poster {
+    width: 120px; 
+    height: 180px; 
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #795548;
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease; 
+}
+
+.show-details {
+    flex-grow: 1;
+    text-align: left; 
+}
+
+.show-title {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8em; 
+    color: #4CAF50; 
+    margin: 5px 0;
+}
+
+.trailer-link {
+    display: inline-block;
+    background-color: #D32F2F; 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Back button */
+.back-btn {
+    display: block; 
+    width: fit-content;
+    margin: 30px auto;     
+    background: #673832;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.back-btn:hover {
+    background: #5b3b04;
+}
+
+/* ---- FOOTER ---- */
+.footer {
+    background: #3E2723;
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 40px;
+    border-top: 5px solid #ffcccb;
+}
+
+.social-icon {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.social-icon__item {
+    margin: 0 10px;
+}
+
+.social-icon__link {
+    font-size: 30px;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icon__link:hover {
+    color: #ffcccb;
+    transform: scale(1.2);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Keyframes for Animation */
+
+/* Keyframes for Border Pulse (Existing) */
+@keyframes borderPulse {
+    0% {
+        border-color: #3E2723;
+        box-shadow: 0 0 10px rgba(62, 39, 35, 0.5);
+    }
+    100% {
+        border-color: #5D4037;
+        box-shadow: 0 0 20px rgba(93, 64, 55, 0.8);
+    }
+}
+
+/* NEW: Keyframes for Title Wiggle */
+@keyframes titleWiggle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); } 
+}
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .live-clock {
+        margin-top: 10px;
+        text-align: center;
+    }
+    .header-title {
+        font-size: 2.5em;
+        width: 100%;
+    }
+    
+    .card-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .portrait-layout {
+        flex-direction: column; 
+    }
+
+    .image-slider {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto 0 auto;
+    }
+
+    /* Stack Food/Drinks on small screens */
+    .favorites-grid.side-by-side {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .favorite-item {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* Stack Comfort Shows on small screens */
+    .shows-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .show-item {
+        min-width: unset;
+        width: 100%;
+    }
+}

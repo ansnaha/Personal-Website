@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anis's Gallery</title>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F4E1; 
+    color: #3E2723;
+}
+
+/* --- Header Styling  --- */
+.custom-header {
+    background-color: #3E2723; 
+    color: white;
+    padding: 20px 5%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.custom-header h1 {
+    font-family: 'Caveat', cursive; 
+    font-size: 3em;
+    margin: 0;
+    flex-grow: 1; 
+    text-align: center;
+}
+
+/* Dropdown Container */
+.dropdown-container {
+    display: block; 
+    margin: 0;
+}
+
+.back-home {
+    background-color: #F8F4E1; 
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #3E2723; 
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 0; 
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #3E2723;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+    background-color: #F8F4E1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* --- Navigation Bar Styling  --- */
+#category-nav {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #3E2723; 
+    border-bottom: 3px solid #ffcccb; 
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 2px solid white; 
+    color: white; 
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.filter-btn:hover {
+    /* Hover state */
+    background-color: white;
+    color: #3E2723; 
+}
+
+.filter-btn.active {
+    /* Active state */
+    background-color: #ffcccb; 
+    color: #3E2723;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-color: #ffcccb;
+}
+
+
+/* --- Gallery Layout and Card Styling --- */
+.main-gallery-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.gallery-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.gallery-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: block;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    border: none;
+    padding: 0;
+}
+
+/* REMOVED: .card-caption { ... } */
+
+/* --- Lightbox Styling --- */
+.lightbox {
+    display: none; 
+    position: fixed;
+    z-index: 100; 
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); 
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+}
+
+#lightbox-img {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    max-height: 80vh; 
+    object-fit: contain;
+}
+
+.lightbox-caption {
+    margin-top: 10px;
+    text-align: center;
+    color: #ccc;
+    font-size: 1.5em;
+    padding: 8px 0;
+}
+
+.close-btn, .prev-btn, .next-btn {
+    position: absolute;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    user-select: none;
+}
+
+.close-btn {
+    right: 35px;
+}
+
+.prev-btn {
+    left: 15px;
+}
+
+.next-btn {
+    right: 75px;
+}
+
+.close-btn:hover,
+.prev-btn:hover,
+.next-btn:hover {
+    color: #ffcccb; 
+}
+
+/* Back button Container */
+.back-btn-container {
+    text-align: center; 
+    padding: 20px 0 40px 0; 
+}
+
+/* Back button */
+.back-btn {
+    display: inline-block;
+    background: #3E2723; 
+    color: #F8F4E1; 
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    border: 2px solid #ffcccb; 
+}
+.back-btn:hover {
+    background: #5b3b04; 
+    color: white;
+}
+
+/* --- MUSIC PLAYER STYLING  --- */
+#music-player-container {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#audio-player {
+    display: none; 
+}
+
+#custom-play-button {
+    background-color: #3E2723; 
+    color: #ffcccb; 
+    border: 2px solid #ffcccb;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 50%; 
+    transition: background-color 0.3s, color 0.3s, transform 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50px; 
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#custom-play-button:hover {
+    background-color: #5b3b04; 
+    transform: scale(1.05);
+}
+
+#custom-play-button.playing {
+    color: #F8F4E1; 
+    background-color: #ffcccb; 
+    border-color: #3E2723;
+}
+/* Optional: Adding a small label for context */
+#music-label {
+    color: #3E2723;
+    font-size: 0.9em;
+    margin-left: 10px;
+    font-style: italic;
+    vertical-align: top;
+    line-height: 50px; 
+}
+
+/* --- Footer Styling --- */
+.footer {
+    background: #3E2723;
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 40px;
+    border-top: 5px solid #ffcccb;
+}
+
+.social-icon {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.social-icon__item {
+    margin: 0 10px;
+}
+
+.social-icon__link {
+    font-size: 30px;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icon__link:hover {
+    color: #ffcccb;
+    transform: scale(1.2);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+    .custom-header h1 {
+        margin-bottom: 15px;
+    }
+    .gallery-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .filter-btn {
+        display: block;
+        width: 90%;
+        margin: 5px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-row {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<header class="custom-header">
+    <div class="header-content">
+        <h1>⋆˙⟡ Anis's Gallery ⋆˙⟡</h1>
+    </div>
+</header>
+<nav id="category-nav">
+    <button class="filter-btn active" data-filter="all">Show All</button>
+    <button class="filter-btn" data-filter="anis">Anis </button>
+    <button class="filter-btn" data-filter="family">Family </button>
+    <button class="filter-btn" data-filter="friends">Friends </button>
+    <button class="filter-btn" data-filter="food">Food </button>
+    <button class="filter-btn" data-filter="school">School </button>
+</nav>
+
+<div id="music-player-container">
+    <audio id="audio-player" autoplay loop>
+        <source src="heavy.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="custom-play-button" class="playing">
+        <ion-icon name="pause-circle-outline"></ion-icon>
+    </button>
+    <span id="music-label">Play the Music</span>
+</div>
+
+
+<main class="main-gallery-container">
+    <div id="gallery-grid" class="gallery-row">
+
+        <div class="gallery-card" data-category="anis"><img src="anis1.PNG" alt="Anis 1" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis2.PNG" alt="Anis 2" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis3.PNG" alt="Anis 3" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis4.PNG" alt="Anis 4" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis5.PNG" alt="Anis 5" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis6.PNG" alt="Anis 6" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis7.PNG" alt="Anis 7" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis8.PNG" alt="Anis 8" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis16.PNG" alt="Anis 9" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis10.PNG" alt="Anis 10" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis11.PNG" alt="Anis 11" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis12.PNG" alt="Anis 12" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis13.PNG" alt="Anis 13" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis14.PNG" alt="Anis 14" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis15.PNG" alt="Anis 15" class="gallery-img"></div>
+        <div class="gallery-card" data-category="anis"><img src="anis9.PNG" alt="Anis 16" class="gallery-img"></div>
+        
+        <div class="gallery-card" data-category="family"><img src="fam11.JPG" alt="Family 1" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam2.jpg" alt="Family 2" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam3.jpg" alt="Family 3" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam4.jpg" alt="Family 4" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam5.jpg" alt="Family 5" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam6.jpg" alt="Family 6" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam7.jpg" alt="Family 7" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam8.PNG" alt="Family 8" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam9.PNG" alt="Family 9" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam10.PNG" alt="Family 10" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam1.jpg" alt="Family 11" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam12.PNG" alt="Family 12" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam13.PNG" alt="Family 13" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam14.PNG" alt="Family 14" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam15.PNG" alt="Family 15" class="gallery-img"></div>
+        <div class="gallery-card" data-category="family"><img src="fam16.PNG" alt="Family 16" class="gallery-img"></div>
+        
+        <div class="gallery-card" data-category="friends"><img src="friend1.JPG" alt="Friend 1" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend2.jpg" alt="Friend 2" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend3.JPG" alt="Friend 3" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend4.jpg" alt="Friend 4" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend5.jpg" alt="Friend 5" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend6.jpg" alt="Friend 6" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend7.PNG" alt="Friend 7" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend8.PNG" alt="Friend 8" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend9.PNG" alt="Friend 9" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend10.PNG" alt="Friend 10" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend11.PNG" alt="Friend 11" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend12.PNG" alt="Friend 12" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend13.PNG" alt="Friend 13" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend14.PNG" alt="Friend 14" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend15.PNG" alt="Friend 15" class="gallery-img"></div>
+        <div class="gallery-card" data-category="friends"><img src="friend16.PNG" alt="Friend 16" class="gallery-img"></div>
+
+        <div class="gallery-card" data-category="food"><img src="food1.JPG" alt="Food 1" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food2.JPG" alt="Food 2" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food3.JPG" alt="Food 3" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food4.JPG" alt="Food 4" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food5.JPG" alt="Food 5" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food6.JPG" alt="Food 6" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food7.JPG" alt="Food 7" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food8.JPG" alt="Food 8" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food9.JPG" alt="Food 9" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food10.JPG" alt="Food 10" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food11.JPG" alt="Food 11" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food12.JPG" alt="Food 12" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food13.JPG" alt="Food 13" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food14.JPG" alt="Food 14" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food15.JPG" alt="Food 15" class="gallery-img"></div>
+        <div class="gallery-card" data-category="food"><img src="food16.JPG" alt="Food 16" class="gallery-img"></div>
+        
+        <div class="gallery-card" data-category="school"><img src="school1.jpg" alt="School 1" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school2.jpg" alt="School 2" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school3.jpg" alt="School 3" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school4.jpg" alt="School 4" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school5.jpg" alt="School 5" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school6.jpg" alt="School 6" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school7.jpg" alt="School 7" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school8.jpg" alt="School 8" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school9.jpg" alt="School 9" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school10.jpg" alt="School 10" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school11.jpg" alt="School 11" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school12.jpg" alt="School 12" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school13.jpg" alt="School 13" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school14.jpg" alt="School 14" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school15.jpg" alt="School 15" class="gallery-img"></div>
+        <div class="gallery-card" data-category="school"><img src="school16.jpg" alt="School 16" class="gallery-img"></div>
+        
+    </div>
+</main>
+<div id="lightbox" class="lightbox">
+    <span class="close-btn">&times;</span>
+    <span class="prev-btn">&#10094;</span>
+    <span class="next-btn">&#10095;</span>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Enlarged Image">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+</div>
+
+<div class="back-btn-container">
+    <a href="home.html" class="back-btn">⬅ Back to Home Page</a>
+</div>
+
+<footer class="footer">
+    <ul class="social-icon">
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.facebook.com/profile.php?id=100094244487958">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.tiktok.com/@ansmadz?_r=1&_t=ZS-91yLbwtTAiy">
+                <ion-icon name="logo-tiktok"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://pin.it/73ceVVpT0">
+                <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+        </li>
+        <li class="social-icon__item">
+            <a class="social-icon__link" href="https://www.instagram.com/ansmadz?igsh=MWI3MGE5dm5qM2o4Zg==">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+        </li>
+    </ul>
+    <p>© ANIS NAJIHA | MY RESUME</p>
+</footer>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryCards = document.querySelectorAll('.gallery-card');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.close-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    let currentCategoryImages = [];
+    let currentIndex = 0;
+
+    // --- NEW MUSIC CONTROL LOGIC ---
+    const audioPlayer = document.getElementById('audio-player');
+    const playButton = document.getElementById('custom-play-button');
+    const playIcon = playButton.querySelector('ion-icon');
+
+    // Attempt to play audio (Note: Autoplay might be blocked by browsers, but we try)
+    audioPlayer.play().catch(error => {
+        console.log("Autoplay failed:", error);
+        // If autoplay fails, the button shows 'Play' state initially
+        playButton.classList.remove('playing');
+        playIcon.setAttribute('name', 'play-circle-outline');
+    });
+
+    playButton.addEventListener('click', function() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playButton.classList.add('playing');
+            playIcon.setAttribute('name', 'pause-circle-outline');
+        } else {
+            audioPlayer.pause();
+            playButton.classList.remove('playing');
+            playIcon.setAttribute('name', 'play-circle-outline');
+        }
+    });
+
+    // --- FILTERING LOGIC (NO CHANGE REQUIRED, IT HANDLES NEW CATEGORY AUTOMATICALLY) ---
+    function filterGallery(category) {
+        galleryCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'block'; 
+            } else {
+                card.style.display = 'none'; 
+            }
+        });
+    }
+
+    // Event listener for filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.getAttribute('data-filter');
+            
+            filterGallery(category);
+            
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Initial load: show all
+    filterGallery('all'); 
+    
+    // --- LIGHTBOX LOGIC (NO CHANGE) ---
+    
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        currentCategoryImages = [];
+        currentIndex = 0;
+    }
+
+    function showImage() {
+        if (currentCategoryImages.length === 0) return;
+        
+        const card = currentCategoryImages[currentIndex];
+        const imgSrc = card.querySelector('.gallery-img').src;
+        // The card caption is removed, but we can still use the image alt text for the lightbox caption
+        const captionText = card.querySelector('.gallery-img').alt; 
+
+        lightboxImg.src = imgSrc;
+        lightboxCaption.textContent = captionText;
+    }
+
+    // Open lightbox when a card is clicked
+    galleryCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const category = card.getAttribute('data-category');
+            
+            // Collect only the *currently visible* cards of the same category
+            currentCategoryImages = Array.from(document.querySelectorAll(`.gallery-card[data-category="${category}"]`))
+                                         .filter(c => c.style.display !== 'none');
+            
+            // Find the index of the clicked card within its currently visible category array
+            currentIndex = currentCategoryImages.findIndex(c => c === card);
+            
+            // Display the lightbox
+            lightbox.style.display = 'block';
+            showImage();
+        });
+    });
+
+    // Event listeners for Lightbox controls
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    prevBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + currentCategoryImages.length) % currentCategoryImages.length;
+        showImage();
+    });
+
+    nextBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % currentCategoryImages.length;
+        showImage();
+    });
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard controls 
+    document.addEventListener('keydown', function(e) {
+        if (lightbox.style.display === 'block') {
+            if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            } else if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        }
+    });
+});
+</script> 
+</body>
+</html>
